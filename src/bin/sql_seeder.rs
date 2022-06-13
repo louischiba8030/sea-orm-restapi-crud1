@@ -5,10 +5,6 @@ use std::collections::HashMap;
 use std::fs;
 use sqlx::prelude::*;
 use sqlx::mysql::MySqlPoolOptions;
-use futures::{
-	executor::{block_on},
-	future,
-};
 
 use ulid::Ulid;
 //mod models;
@@ -32,22 +28,6 @@ async fn main () -> anyhow::Result<()> {
 	let content = fs::read_to_string(file_name)
 		.expect("Failed to load JSON");
 	
-	//let book: Book = serde_json::from_str(&content).unwrap();
-	//println!("typeof deserialized = {}", type_of(book));
-	
-//	for v1 in book.iter() {
-//		register_todb(vec!(&v1)).await?;
-	//}
-
-	// Create a connection pool
-	let mut pool = MySqlPoolOptions::new()
-		.max_connections(5)
-		.connect("mysql://dbuser:12ab@localhost:3306/rust_web_test2")
-		.await?;
-
-	// Generate a ulid
-	let ulid = Ulid::new();
-
 	let deserialized: Vec<Book> = serde_json::from_str(&content).unwrap();
 	for v1 in deserialized {
 		register_todb(v1).await?;
@@ -57,15 +37,29 @@ async fn main () -> anyhow::Result<()> {
 }
 
 async fn register_todb(v1: Book) -> anyhow::Result<()> {
-//	println!("Got {:#?}", v1.author);
-//	println!("typeof v1 = {}", type_of(v1));
-	let sql = "INSERT INTO posts (uuid, title, author, pages, publisher, isbn13) VALUES (?, ?, ?, ?, ?, ?)";
+	// Create a connection pool
+	let mut pool = MySqlPoolOptions::new()
+		.max_connections(5)
+		.connect("mysql://dbuser:12ab@localhost:3306/rust_web_test2")
+		.await?;
+
+	// Generate a ulid
+	let ulid = Ulid::new();
+
+	let sql = "INSERT INTO posts (
+		ulid,
+		title,
+		author,
+		pages,
+		publisher,
+		isbn13
+	) VALUES (?, ?, ?, ?, ?, ?)";
 	let account = sqlx::query(sql)
 		.bind(ulid.to_string()) // ulid
 		.bind(v1.title)
 		.bind(v1.author)
 		.bind(v1.pages)
-		.bind(v1.publisher))
+		.bind(v1.publisher)
 		.bind(v1.isbn13)
 		.execute(&pool)
 		.await?;
