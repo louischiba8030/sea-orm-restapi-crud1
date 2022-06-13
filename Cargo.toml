@@ -7,8 +7,14 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.57"
+futures = "0.3.21"
 serde = { version = "1.0.137", features = ["derive"] }
 serde_json = "1.0.81"
 sqlx = { version = "0.5.13", features = ["runtime-tokio-native-tls", "json", "mysql"] }
 tokio = { version = "1.19.2", features = ["full"] }
+ulid = { version = "0.5.0", features = ["serde"] }
 uuid = "1.1.2"
+
+[[bin]]
+name = "sql_seeder"
+path = "src/bin/sql_seeder.rs"

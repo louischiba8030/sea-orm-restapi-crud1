@@ -1,9 +1,10 @@
 USE rust_web_test2;
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "薔薇の名前〈上〉",
 "ウンベルト エーコ",
 413,
@@ -12,9 +13,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "実用 Go言語",
 "渋川 よしき",
 464,
@@ -23,9 +25,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "永遠と復活",
 "大川 従道",
 184,
@@ -34,9 +37,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "帝国主義",
 "レーニン",
 241,
@@ -45,9 +49,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "十角館の殺人 <新装改訂版>",
 "綾辻 行人",
 512,
@@ -56,9 +61,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "塩狩峠",
 "三浦 綾子",
 464,
@@ -67,9 +73,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "狂王ヘロデ",
 "曾野 綾子",
 400,
@@ -78,9 +85,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "わが師イエスの生涯",
 "井上　洋治",
 250,
@@ -89,9 +97,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "1駅1題 TOEIC L&R TEST 読解特急",
 "神崎　正哉",
 336,
@@ -100,9 +109,10 @@ VALUES(
 );
 
 INSERT INTO posts(
-title, author, pages, publisher, isbn13
+uuid, title, author, pages, publisher, isbn13
 )
 VALUES(
+UNHEX(REPLACE(UUID(), '-', '')),
 "自由からの逃走 新版",
 "エーリッヒ・フロム",
 337,

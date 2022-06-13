@@ -14,12 +14,14 @@ async fn main() -> anyhow::Result<()> {
 		.connect("mysql://dbuser:12ab@localhost:3306/rust_web_test2").await?;
 
 	// Make a simple query to return the given parameter
-	let rows = sqlx::query_as::<_, Book>("SELECT * FROM posts")
+//	let mut rows = sqlx::query_as::<_, Book>("SELECT * FROM posts")
+	let mut rows = sqlx::query("SELECT title, author FROM posts")
 		.fetch_all(&pool)
 		.await?;
 
-//		assert_eq!(row.0, 464);
-		println!("{:?}", rows.len());
+//		assert_eq!(row.0, "ed3c4b42-ea54-11ec-b752-309c23791e49");
+//		println!("{:?}", rows.len());
+		println!("{:?}", rows);
 
 		Ok(())
 }
